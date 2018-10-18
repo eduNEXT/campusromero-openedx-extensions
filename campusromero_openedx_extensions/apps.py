@@ -12,7 +12,9 @@ class CampusRomeroOpenedxExtensionsConfig(AppConfig):
 
     plugin_app = {
         'settings_config': {
-            'lms.djangoapp': {},
+            u'lms.djangoapp': {
+                u'common': {'relative_path': u'settings.common'},
+            },
             'cms.djangoapp': {},
         },
     }
