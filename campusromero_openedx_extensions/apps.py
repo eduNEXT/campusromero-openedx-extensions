@@ -3,6 +3,7 @@ File configuration for campusromero_openedx_extensions.
 """
 from django.apps import AppConfig
 
+
 class CampusRomeroOpenedxExtensionsConfig(AppConfig):
     """
     App configuration.

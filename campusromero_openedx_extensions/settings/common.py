@@ -23,3 +23,6 @@ def plugin_settings(settings):
     settings.ADDL_INSTALLED_APPS = getattr(settings, 'ADDL_INSTALLED_APPS', [])
     settings.ADDL_INSTALLED_APPS.append("campusromero_openedx_extensions.custom_registration_form")
     settings.ENABLE_COMBINED_LOGIN_REGISTRATION = True
+    # Settings for QRcode certificates
+    settings.CERTIFICATES_QR_CODE_BUCKET = "stage-cromero-certificates-qrcodes"
+    settings.CERTIFICATES_QR_CODE_STORAGE = "storages.backends.s3boto.S3BotoStorage"

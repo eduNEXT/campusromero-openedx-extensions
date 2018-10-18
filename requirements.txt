@@ -19,3 +19,4 @@ pytz==2018.5              # via django
 singledispatch==3.4.0.3   # via astroid, pylint
 six==1.11.0               # via astroid, pylint, singledispatch
 wrapt==1.10.11            # via astroid
+django-storages==1.4.1
