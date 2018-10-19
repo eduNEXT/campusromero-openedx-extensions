@@ -18,4 +18,10 @@ class CampusRomeroOpenedxExtensionsConfig(AppConfig):
             },
             'cms.djangoapp': {},
         },
+        'url_config': {
+            'lms.djangoapp': {
+                'namespace': 'general_custom_views',
+                'relative_path': 'general_custom_views.urls',
+            }
+        },
     }
