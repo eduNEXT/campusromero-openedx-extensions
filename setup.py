@@ -32,5 +32,8 @@ setup(
         "lms.djangoapp": [
             "campusromero_openedx_extensions = campusromero_openedx_extensions.apps:CampusRomeroOpenedxExtensionsConfig",
         ],
+        "cms.djangoapp": [
+            "campusromero_openedx_extensions = campusromero_openedx_extensions.apps:CampusRomeroOpenedxExtensionsConfig",
+        ],
     }
 )
