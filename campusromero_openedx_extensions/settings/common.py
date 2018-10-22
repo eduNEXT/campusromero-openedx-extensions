@@ -13,6 +13,7 @@ INSTALLED_APPS = [
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
+
 def plugin_settings(settings):
     """
     Set of plugin settings used by the Open Edx platform.
@@ -27,3 +28,4 @@ def plugin_settings(settings):
     # Settings for QRcode certificates
     settings.CERTIFICATES_QR_CODE_BUCKET = "stage-cromero-certificates-qrcodes"
     settings.CERTIFICATES_QR_CODE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+    settings.CAMPUS_EDXMAKO_MODULE = "campusromero_openedx_extensions.edxapp_wrapper.backends.edxmako_campus_module"
