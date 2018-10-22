@@ -6,5 +6,12 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from .models import CustomFormFields
+from django.utils.translation import ugettext_lazy as _
 
 admin.site.register(CustomFormFields)
+
+class CustomFormFieldsInline(admin.StackedInline):
+    """ Inline admin interface for CustomFormFields model. """
+    model = CustomFormFields
+    can_delete = False
+    verbose_name_plural = _('Custom Fields')
