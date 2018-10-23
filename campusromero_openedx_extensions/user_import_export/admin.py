@@ -138,6 +138,10 @@ class CustomUserAdmin(ImportExportModelAdmin):
             return self.add_fieldsets
         return super(CustomUserAdmin, self).get_fieldsets(request, obj)
 
+    def get_readonly_fields(self, request, obj=None):
+        django_readonly = super(CustomUserAdmin, self).get_readonly_fields(request, obj)
+        return django_readonly
+
     def get_form(self, request, obj=None, **kwargs):
         """
         Use special form during user creation
