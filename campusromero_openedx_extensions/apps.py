@@ -14,9 +14,15 @@ class CampusRomeroOpenedxExtensionsConfig(AppConfig):
     plugin_app = {
         'settings_config': {
             u'lms.djangoapp': {
+                u'aws': {'relative_path': u'settings.aws'},
                 u'common': {'relative_path': u'settings.common'},
+                u'devstack': {'relative_path': u'settings.devstack'},
             },
-            'cms.djangoapp': {},
+            u'cms.djangoapp': {
+                u'aws': {'relative_path': u'settings.aws'},
+                u'common': {'relative_path': u'settings.common'},
+                u'devstack': {'relative_path': u'settings.devstack'},
+            },
         },
         'url_config': {
             'lms.djangoapp': {
