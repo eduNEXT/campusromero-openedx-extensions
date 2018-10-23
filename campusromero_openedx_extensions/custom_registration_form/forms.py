@@ -5,6 +5,7 @@ from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 from .models import CustomFormFields
 
+
 class CustomForm(ModelForm):
     """
     Class to defined the form used from CustomFormFields model.
@@ -22,14 +23,13 @@ class CustomForm(ModelForm):
             'institution',
         )
 
-
     def __init__(self, *args, **kwargs):
         super(CustomForm, self).__init__(*args, **kwargs)
         self.fields['month_of_birth'].error_messages = {
-            "required": _('Please enter your month of birth.'),
+            "invalid": _('This month is not valid, please check your input.'),
         }
         self.fields['day_of_birth'].error_messages = {
-            "required": _('Please enter your day of birth.'),
+            "invalid": _('This day number is not valid, please check your input.'),
         }
         self.fields['dni'].error_messages = {
             'required': _('Please enter DNI number.'),
