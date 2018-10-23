@@ -20,11 +20,15 @@ class CustomFormFields(models.Model):
     user = models.OneToOneField(USER_MODEL, null=True)
     month_of_birth = models.CharField(
         verbose_name="Month Of Birth",
+        blank=True,
+        null=True,
         max_length=2,
         choices=MONTH_OF_BIRTH
     )
     day_of_birth = models.CharField(
         verbose_name="Day Of Birth",
+        blank=True,
+        null=True,
         max_length=2,
         choices=DAY_OF_BIRTH
     )
