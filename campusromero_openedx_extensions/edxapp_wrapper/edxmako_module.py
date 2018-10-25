@@ -1,11 +1,11 @@
 
-""" Backend abstraction """
+""" Backend abstraction. """
 from importlib import import_module
 from django.conf import settings
 
 
 def render_to_response(*args, **kwargs):
-    """ Creates the edxapp user """
+    """ Return render to response. """
 
     backend_function = settings.CAMPUS_EDXMAKO_MODULE
     backend = import_module(backend_function)
