@@ -10,7 +10,6 @@ INSTALLED_APPS = [
     'campusromero_openedx_extensions.custom_registration_form'
 ]
 
-LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 

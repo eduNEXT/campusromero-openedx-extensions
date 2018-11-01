@@ -15,4 +15,10 @@ clean: ## delete most git-ignored files
 	find . -name '*.pyc' -exec rm -f {} +
 
 requirements: ## install development environment requirements
-	pip install -r requirements.txt
+	pip install -r requirements/base.txt
+
+extract_translations: ## Extract translations es_419.
+	django-admin.py makemessages -l es_419 -v0 -d django
+
+compile_translations: ## Compile .po files into .mo files.
+	django-admin.py compilemessages

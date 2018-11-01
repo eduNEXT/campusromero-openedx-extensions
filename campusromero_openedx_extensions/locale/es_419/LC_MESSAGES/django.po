@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-05 13:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: campusromero_openedx_extensions/custom_registration_form/admin.py:17
+msgid "Custom Fields"
+msgstr "Campos Personalizados"
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:29
+msgid "This month is not valid, please check your input."
+msgstr "El mes ingresado no es válido, por favor verifica tu entrada."
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:32
+msgid "This day number is not valid, please check your input."
+msgstr "El número de día ingresado no es válido, por favor verifica tu entrada."
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:35
+msgid "Please enter DNI number."
+msgstr "Por favor, ingresa el número del DNI."
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:36
+msgid "This DNI number seems invalid, please check your input."
+msgstr "Este DNI no es válido, por favor verifica tu entrada."
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:39
+msgid "Please enter your phone number."
+msgstr "Por favor, ingresa el número de teléfono."
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:40
+msgid "This Phone number seems invalid, please check your input."
+msgstr "Este número de teléfono no es válido, por favor verifica tu entrada."
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:43
+msgid "Please enter your institution name."
+msgstr "Por favor, ingresa el nombre de la institución."
+
+#: campusromero_openedx_extensions/custom_registration_form/forms.py:44
+msgid "This Institution name seems invalid, please check your input."
+msgstr "Este nombre de institución no es válido, por favor verifica tu entrada."
+
+#: campusromero_openedx_extensions/custom_registration_form/models.py:23
+msgid "Month Of Birth"
+msgstr "Mes de nacimiento"
+
+#: campusromero_openedx_extensions/custom_registration_form/models.py:30
+msgid "Day Of Birth"
+msgstr "Día de nacimiento"
+
+#: campusromero_openedx_extensions/custom_registration_form/models.py:37
+msgid "DNI"
+msgstr "DNI"
+
+#: campusromero_openedx_extensions/custom_registration_form/models.py:41
+msgid "Phone Number"
+msgstr "Teléfono"
+
+#: campusromero_openedx_extensions/custom_registration_form/models.py:45
+msgid "Institution"
+msgstr "Institución educativa"
+
+#: campusromero_openedx_extensions/user_import_export/admin.py:55
+msgid "Personal info"
+msgstr "Información personal"
+
+#: campusromero_openedx_extensions/user_import_export/admin.py:65
+msgid "Permissions"
+msgstr "Permisos"
+
+#: campusromero_openedx_extensions/user_import_export/admin.py:77
+msgid "Important dates"
+msgstr "Fechas importantes"
+
+#: campusromero_openedx_extensions/user_import_export/admin.py:204
+#, python-format
+msgid "%(name)s object with primary key %(key)r does not exist."
+msgstr "El objeto %(name)s con llave primaria %(key)r no existe."
+
+#: campusromero_openedx_extensions/user_import_export/admin.py:214
+msgid "Password changed successfully."
+msgstr "Contraseña cambiada con éxito."
+
+#: campusromero_openedx_extensions/user_import_export/admin.py:225
+#, python-format
+msgid "Change password: %s"
+msgstr "Cambio de contraseña: %s"
