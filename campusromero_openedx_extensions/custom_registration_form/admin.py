@@ -10,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 
 admin.site.register(CustomFormFields)
 
+
 class CustomFormFieldsInline(admin.StackedInline):
     """ Inline admin interface for CustomFormFields model. """
     model = CustomFormFields
