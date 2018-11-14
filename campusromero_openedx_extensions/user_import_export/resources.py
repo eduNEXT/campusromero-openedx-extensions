@@ -184,11 +184,11 @@ class UserResource(resources.ModelResource):
         try:
             level_of_education = obj.level_of_education
             if not level_of_education:
-                level_of_education = CustomFormFields.objects.get(user=obj).level_of_education
+                level_of_education = UserProfile.objects.get(user=obj).level_of_education
         except AttributeError:
             try:
-                level_of_education = CustomFormFields.objects.get(user=obj).level_of_education
-            except CustomFormFields.DoesNotExist:
+                level_of_education = UserProfile.objects.get(user=obj).level_of_education
+            except UserProfile.DoesNotExist:
                 level_of_education = ''
         return level_of_education
 
