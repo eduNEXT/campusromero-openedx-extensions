@@ -43,5 +43,7 @@ class CustomFormFields(models.Model):
     )
     institution = models.TextField(
         verbose_name=_("Institution"),
+        blank=True,
+        null=True,
         max_length=60
     )
