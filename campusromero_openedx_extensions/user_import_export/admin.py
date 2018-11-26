@@ -91,7 +91,8 @@ class CustomUserAdmin(ImportExportModelAdmin):
                 'fields': (
                     'username',
                     'password1',
-                    'password2'
+                    'password2',
+                    'email',
                 ),
             }
         ),
@@ -260,6 +261,7 @@ class CustomUserAdmin(ImportExportModelAdmin):
         * We are adding a user in a popup
         """
         if '_addanother' not in request.POST and IS_POPUP_VAR not in request.POST:
+            request.POST = request.POST.copy()
             request.POST['_continue'] = 1
         return super(CustomUserAdmin, self).response_add(
             request,
