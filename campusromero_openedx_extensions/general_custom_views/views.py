@@ -194,7 +194,8 @@ def change_enrollment(request, course_id, check_access=True):
 
 
 def noLoginBasket(request, sku):
-    path_basket = "/basket/single-item/?sku=" + sku
+    base_path = settings.CAMPUS_MKTG_BASKET_BASE_URL
+    path_basket = base_path + sku
     return redirect(settings.ECOMMERCE_PUBLIC_URL_ROOT + path_basket)
 
 

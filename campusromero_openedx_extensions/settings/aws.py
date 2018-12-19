@@ -27,3 +27,9 @@ def plugin_settings(settings):
     ).get('CAMPUS_EDXMAKO_MODULE', getattr(
         settings, "CAMPUS_EDXMAKO_MODULE"
     ))
+
+    settings.CAMPUS_MKTG_BASKET_BASE_URL = getattr(
+        settings, 'ENV_TOKENS', {}
+    ).get('CAMPUS_MKTG_BASKET_BASE_URL', getattr(
+        settings, "CAMPUS_MKTG_BASKET_BASE_URL"
+    ))
