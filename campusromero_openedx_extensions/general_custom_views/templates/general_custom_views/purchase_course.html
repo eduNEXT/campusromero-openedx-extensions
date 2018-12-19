@@ -44,14 +44,14 @@ color: #fff;}
                 % endif
             % else :
                 <!-- Si el usuario no esta matriculado, el curso esta regitrado como pago y esta logeado -->
-                <a href="${ ecommerce_public_url_root }/basket/single-item/?sku=${ sku }" x="x" class="btn" target="_parent" id="submit" attr="x" >CERTIFÍCATE AQUÍ!</a>
+                <a href="${ ecommerce_public_url_root }/basket/add/?sku=${ sku }" x="x" class="btn" target="_parent" id="submit" attr="x" >CERTIFÍCATE AQUÍ!</a>
             % endif
         % else :
             <!-- Si es un curso con precio > 0 y el usuario esta logeado -->
             % if cod_course != "course-v1:LBM+GET-UPC01+2017" :
-                <a href="${ ecommerce_public_url_root }/basket/single-item/?sku=${ sku }" x="x" class="btn" target="_parent" id="submit" attr="x" >¡INSCRÍBETE AQUÍ!</a>
+                <a href="${ ecommerce_public_url_root }/basket/add/?sku=${ sku }" x="x" class="btn" target="_parent" id="submit" attr="x" >¡INSCRÍBETE AQUÍ!</a>
             % else :
-                <a href="${ ecommerce_public_url_root }/basket/single-item/?sku=${ sku }" x="x" class="btn" target="_parent" id="submit" attr="x" >¡PAGA AQUÍ!</a>
+                <a href="${ ecommerce_public_url_root }/basket/add/?sku=${ sku }" x="x" class="btn" target="_parent" id="submit" attr="x" >¡PAGA AQUÍ!</a>
             % endif
         % endif
     % else:
