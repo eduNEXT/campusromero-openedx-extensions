@@ -71,7 +71,7 @@ msgstr "Teléfono"
 
 #: campusromero_openedx_extensions/custom_registration_form/models.py:45
 msgid "Institution"
-msgstr "Institución educativa"
+msgstr "Institución educativa o empresa a la que pertenece"
 
 #: campusromero_openedx_extensions/user_import_export/admin.py:55
 msgid "Personal info"
