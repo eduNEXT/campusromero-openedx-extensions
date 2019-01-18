@@ -15,7 +15,6 @@ class UserResource(resources.ModelResource):
     gender = fields.Field(attribute='gender')
     city = fields.Field(attribute='city')
     year_of_birth = fields.Field(attribute='year_of_birth')
-    level_of_education = fields.Field(attribute='level_of_education')
 
     # CustomFormFields columns
     day_of_birth = fields.Field(attribute='day_of_birth')
@@ -47,7 +46,6 @@ class UserResource(resources.ModelResource):
             'date_joined',
             'day_of_birth',
             'month_of_birth',
-            'level_of_education'
         )
 
         export_order = (
@@ -67,7 +65,6 @@ class UserResource(resources.ModelResource):
             'year_of_birth',
             'institution',
             'date_joined',
-            'level_of_education'
         )
 
 
@@ -179,18 +176,6 @@ class UserResource(resources.ModelResource):
             except CustomFormFields.DoesNotExist:
                 institution = ''
         return institution
-
-    def dehydrate_level_of_education(self, obj):
-        try:
-            level_of_education = obj.level_of_education
-            if not level_of_education:
-                level_of_education = UserProfile.objects.get(user=obj).level_of_education
-        except AttributeError:
-            try:
-                level_of_education = UserProfile.objects.get(user=obj).level_of_education
-            except UserProfile.DoesNotExist:
-                level_of_education = ''
-        return level_of_education
 
     def before_save_instance(self, instance, using_transactions, dry_run):
         duplicate_email = False
