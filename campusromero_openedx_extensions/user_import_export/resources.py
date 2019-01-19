@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from campusromero_openedx_extensions.custom_registration_form.models import CustomFormFields
 from student.models import UserProfile
 
+
 class UserResource(resources.ModelResource):
 
     password = fields.Field(attribute='password')
@@ -23,12 +24,9 @@ class UserResource(resources.ModelResource):
     phone_number = fields.Field(attribute="phone_number")
     institution = fields.Field(attribute="institution")
 
-
     class Meta:
         model = User
-
-        import_id_fields=['id']
-
+        import_id_fields = ['id']
         fields = (
             'username',
             'first_name',
@@ -47,7 +45,6 @@ class UserResource(resources.ModelResource):
             'day_of_birth',
             'month_of_birth',
         )
-
         export_order = (
             'id',
             'username',
@@ -66,7 +63,6 @@ class UserResource(resources.ModelResource):
             'institution',
             'date_joined',
         )
-
 
     def dehydrate_dni(self, obj):
         try:
