@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from campusromero_openedx_extensions.custom_registration_form.models import CustomFormFields
 from student.models import UserProfile
 
+
 class UserResource(resources.ModelResource):
 
     password = fields.Field(attribute='password')
@@ -15,7 +16,6 @@ class UserResource(resources.ModelResource):
     gender = fields.Field(attribute='gender')
     city = fields.Field(attribute='city')
     year_of_birth = fields.Field(attribute='year_of_birth')
-    level_of_education = fields.Field(attribute='level_of_education')
 
     # CustomFormFields columns
     day_of_birth = fields.Field(attribute='day_of_birth')
@@ -24,12 +24,9 @@ class UserResource(resources.ModelResource):
     phone_number = fields.Field(attribute="phone_number")
     institution = fields.Field(attribute="institution")
 
-
     class Meta:
         model = User
-
-        import_id_fields=['id']
-
+        import_id_fields = ['id']
         fields = (
             'username',
             'first_name',
@@ -47,9 +44,7 @@ class UserResource(resources.ModelResource):
             'date_joined',
             'day_of_birth',
             'month_of_birth',
-            'level_of_education'
         )
-
         export_order = (
             'id',
             'username',
@@ -67,134 +62,151 @@ class UserResource(resources.ModelResource):
             'year_of_birth',
             'institution',
             'date_joined',
-            'level_of_education'
         )
 
-
     def dehydrate_dni(self, obj):
+        dni = ''
         try:
             dni = obj.dni
-            if not dni:
-                dni = CustomFormFields.objects.get(user=obj).dni
         except AttributeError:
+            pass
+
+        if not dni:
             try:
-                dni = CustomFormFields.objects.get(user_id=obj.id).dni
+                dni = CustomFormFields.objects.get(user=obj).dni
             except CustomFormFields.DoesNotExist:
-                dni = ''
+                pass
+
         return dni
 
     def dehydrate_phone_number(self, obj):
+        phone_number = ''
         try:
-
             phone_number = obj.phone_number
-            if not phone_number:
-                phone_number = CustomFormFields.objects.get(user=obj).phone_number
         except AttributeError:
+            pass
+
+        if not phone_number:
             try:
                 phone_number = CustomFormFields.objects.get(user=obj).phone_number
             except CustomFormFields.DoesNotExist:
-                phone_number = ''
+                pass
+
         return phone_number
 
     def dehydrate_name(self, obj):
+        name = ''
         try:
             name = obj.name
-            if not name:
-                name = UserProfile.objects.get(user=obj).name
         except AttributeError:
+            pass
+
+        if not name:
             try:
                 name = UserProfile.objects.get(user=obj).name
             except UserProfile.DoesNotExist:
-                name = ''
+                pass
+
         return name
 
     def dehydrate_gender(self, obj):
+        gender = None
         try:
             gender = obj.gender
-            if not gender:
-                gender = UserProfile.objects.get(user=obj).gender
         except AttributeError:
+            pass
+
+        if not gender:
             try:
                 gender = UserProfile.objects.get(user=obj).gender
             except UserProfile.DoesNotExist:
-                gender = ''
+                pass
+
         return gender
 
     def dehydrate_city(self, obj):
+        city = None
         try:
             city = obj.city
-            if not city:
-                city = UserProfile.objects.get(user=obj).city
         except AttributeError:
+            pass
+
+        if not city:
             try:
                 city = UserProfile.objects.get(user=obj).city
             except UserProfile.DoesNotExist:
-                city = ''
+                pass
+
         return city
 
     def dehydrate_day_of_birth(self, obj):
+        day_of_birth = None
         try:
             day_of_birth = obj.day_of_birth
-            if not day_of_birth:
-                day_of_birth = CustomFormFields.objects.get(user=obj).day_of_birth
         except AttributeError:
+            pass
+
+        if not day_of_birth:
             try:
                 day_of_birth = CustomFormFields.objects.get(user=obj).day_of_birth
             except CustomFormFields.DoesNotExist:
-                day_of_birth = ''
+                pass
+
         return day_of_birth
 
     def dehydrate_month_of_birth(self, obj):
+        month_of_birth = None
         try:
             month_of_birth = obj.month_of_birth
-            if not month_of_birth:
-                month_of_birth = CustomFormFields.objects.get(user=obj).month_of_birth
         except AttributeError:
+            pass
+
+        if not month_of_birth:
             try:
                 month_of_birth = CustomFormFields.objects.get(user=obj).month_of_birth
             except CustomFormFields.DoesNotExist:
-                month_of_birth = ''
+                pass
+
         return month_of_birth
 
     def dehydrate_year_of_birth(self, obj):
+        year_of_birth = None
         try:
             year_of_birth = obj.year_of_birth
-            if not year_of_birth:
-                year_of_birth = UserProfile.objects.get(user=obj).year_of_birth
         except AttributeError:
+            pass
+
+        if not year_of_birth:
             try:
                 year_of_birth = UserProfile.objects.get(user=obj).year_of_birth
             except UserProfile.DoesNotExist:
-                year_of_birth = ''
+                pass
+
         return year_of_birth
 
     def dehydrate_institution(self, obj):
+        institution = ''
         try:
             institution = obj.institution
-            if not institution:
-                institution = CustomFormFields.objects.get(user=obj).institution
         except AttributeError:
+            pass
+
+        if not institution:
             try:
                 institution = CustomFormFields.objects.get(user=obj).institution
             except CustomFormFields.DoesNotExist:
-                institution = ''
-        return institution
+                pass
 
-    def dehydrate_level_of_education(self, obj):
-        try:
-            level_of_education = obj.level_of_education
-            if not level_of_education:
-                level_of_education = UserProfile.objects.get(user=obj).level_of_education
-        except AttributeError:
-            try:
-                level_of_education = UserProfile.objects.get(user=obj).level_of_education
-            except UserProfile.DoesNotExist:
-                level_of_education = ''
-        return level_of_education
+        return institution
 
     def before_save_instance(self, instance, using_transactions, dry_run):
         duplicate_email = False
         error_duplicate_email = 'Advertencia_Sbs1: \"Duplicate entry \'' + str(instance.email) + '\' for key \'email\''
+
+        # Name, first_name and last_name fields must not be None (allowed to be blank)
+        instance.name = instance.name or ''
+        instance.first_name = instance.first_name or ''
+        instance.last_name = instance.last_name or ''
 
         if not instance.id:
             duplicate_email = User.objects.filter(email=instance.email).exists()
@@ -217,7 +229,6 @@ class UserResource(resources.ModelResource):
 
     def after_save_instance(self, instance, using_transactions, dry_run):
         if not dry_run:
-
             if type(instance.dni) is int and str(instance.dni)[-2:] == '.0':
                 instance.dni = str(instance.dni)[:-2]
 
