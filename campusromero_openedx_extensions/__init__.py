@@ -1,4 +1,4 @@
 """
 Init for campusromero_openedx_extensions.
 """
-__version__ = '0.1.9'
+__version__ = '0.1.10'
