@@ -1,5 +1,6 @@
 Django==1.11.15
 django-import-export==1.0.0
+openpyxl==2.4.9
 django-admin-rangefilter==0.2.1
 django-storages==1.4.1
 qrcode==6.0
