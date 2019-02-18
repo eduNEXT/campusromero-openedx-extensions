@@ -1,27 +1,43 @@
 import logging
-from import_export import resources, fields
+from import_export import resources, fields, widgets
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    from django.utils.encoding import force_unicode as force_text
 
 from campusromero_openedx_extensions.custom_registration_form.models import CustomFormFields
 from student.models import UserProfile
 
 
+class CustomCharWidget(widgets.CharWidget):
+
+    def clean(self, value, row=None, *args, **kwargs):
+        if isinstance(value, float):
+            # Forcing the value to be text without the decimal part
+            value = force_text(int(value))
+        return value
+
+
 class UserResource(resources.ModelResource):
 
-    password = fields.Field(attribute='password')
+    # Using a custom widget on char fields composed by numbers to prevent issue when importing with XLS
+    # More details here: https://github.com/django-import-export/django-import-export/issues/96
+    password = fields.Field(attribute='password', widget=CustomCharWidget())
 
     # UserProfile columns
     name = fields.Field(attribute='name')
     gender = fields.Field(attribute='gender')
     city = fields.Field(attribute='city')
-    year_of_birth = fields.Field(attribute='year_of_birth')
+    year_of_birth = fields.Field(attribute='year_of_birth', widget=CustomCharWidget())
 
     # CustomFormFields columns
-    day_of_birth = fields.Field(attribute='day_of_birth')
-    month_of_birth = fields.Field(attribute='month_of_birth')
-    dni = fields.Field(attribute="dni")
-    phone_number = fields.Field(attribute="phone_number")
+    day_of_birth = fields.Field(attribute='day_of_birth', widget=CustomCharWidget())
+    month_of_birth = fields.Field(attribute='month_of_birth', widget=CustomCharWidget())
+    dni = fields.Field(attribute="dni", widget=CustomCharWidget())
+    phone_number = fields.Field(attribute="phone_number", widget=CustomCharWidget())
     institution = fields.Field(attribute="institution")
 
     class Meta:
