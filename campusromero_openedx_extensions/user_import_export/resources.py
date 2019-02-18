@@ -64,10 +64,16 @@ class UserResource(resources.ModelResource):
             'date_joined',
         )
 
+    def remove_decimal(self,attribute):
+        if attribute and str(attribute)[-2:] == '.0':
+            return str(attribute)[:-2]
+
+        return attribute
+
     def dehydrate_dni(self, obj):
         dni = ''
         try:
-            dni = obj.dni
+            dni = self.remove_decimal(obj.dni)
         except AttributeError:
             pass
 
@@ -82,7 +88,7 @@ class UserResource(resources.ModelResource):
     def dehydrate_phone_number(self, obj):
         phone_number = ''
         try:
-            phone_number = obj.phone_number
+            phone_number = self.remove_decimal(obj.phone_number)
         except AttributeError:
             pass
 
@@ -142,7 +148,7 @@ class UserResource(resources.ModelResource):
     def dehydrate_day_of_birth(self, obj):
         day_of_birth = None
         try:
-            day_of_birth = obj.day_of_birth
+            day_of_birth = self.remove_decimal(obj.day_of_birth)
         except AttributeError:
             pass
 
@@ -157,7 +163,7 @@ class UserResource(resources.ModelResource):
     def dehydrate_month_of_birth(self, obj):
         month_of_birth = None
         try:
-            month_of_birth = obj.month_of_birth
+            month_of_birth = self.remove_decimal(obj.month_of_birth)
         except AttributeError:
             pass
 
@@ -172,7 +178,7 @@ class UserResource(resources.ModelResource):
     def dehydrate_year_of_birth(self, obj):
         year_of_birth = None
         try:
-            year_of_birth = obj.year_of_birth
+            year_of_birth = self.remove_decimal(obj.year_of_birth)
         except AttributeError:
             pass
 
@@ -220,7 +226,7 @@ class UserResource(resources.ModelResource):
 
         if not instance.password:
             new_pass = '1234'
-        elif type(instance.password) is int and str(instance.password)[-2:] == '.0':
+        elif instance.password and str(instance.password)[-2:] == '.0':
             new_pass = str(instance.password)[:-2]
         else:
             new_pass = str(instance.password)
