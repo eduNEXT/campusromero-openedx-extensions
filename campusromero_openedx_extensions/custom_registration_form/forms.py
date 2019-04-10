@@ -40,5 +40,6 @@ class CustomForm(ModelForm):
             'invalid': _('This Phone number seems invalid, please check your input.'),
         }
         self.fields['institution'].error_messages = {
+            'required': _('Please enter your institution name.'),
             'invalid': _('This Institution name seems invalid, please check your input.'),
         }
