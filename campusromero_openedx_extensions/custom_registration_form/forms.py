@@ -32,14 +32,11 @@ class CustomForm(ModelForm):
             "invalid": _('This day number is not valid, please check your input.'),
         }
         self.fields['dni'].error_messages = {
-            'required': _('Please enter DNI number.'),
             'invalid': _('This DNI number seems invalid, please check your input.'),
         }
         self.fields['phone_number'].error_messages = {
-            'required': _('Please enter your phone number.'),
             'invalid': _('This Phone number seems invalid, please check your input.'),
         }
         self.fields['institution'].error_messages = {
-            'required': _('Please enter your institution name.'),
             'invalid': _('This Institution name seems invalid, please check your input.'),
         }
