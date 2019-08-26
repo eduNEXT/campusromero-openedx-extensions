@@ -35,14 +35,20 @@ class CustomFormFields(models.Model):
     )
     dni = models.TextField(
         verbose_name=_("DNI"),
+        blank=True,
+        null=True,
         max_length=10
     )
     phone_number = models.CharField(
         verbose_name=_("Phone Number"),
+        blank=True,
+        null=True,
         max_length=60
     )
     institution = models.TextField(
         verbose_name=_("Institution"),
+        blank=True,
+        null=True,
         max_length=60,
         default=""
     )
