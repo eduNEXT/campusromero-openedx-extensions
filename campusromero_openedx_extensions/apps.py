@@ -17,11 +17,13 @@ class CampusRomeroOpenedxExtensionsConfig(AppConfig):
                 u'aws': {'relative_path': u'settings.aws'},
                 u'common': {'relative_path': u'settings.common'},
                 u'devstack': {'relative_path': u'settings.devstack'},
+                u'test': {'relative_path': 'settings.test'},
             },
             u'cms.djangoapp': {
                 u'aws': {'relative_path': u'settings.aws'},
                 u'common': {'relative_path': u'settings.common'},
                 u'devstack': {'relative_path': u'settings.devstack'},
+                u'test': {'relative_path': 'settings.test'},
             },
         },
         'url_config': {
