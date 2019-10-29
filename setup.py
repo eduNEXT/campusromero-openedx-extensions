@@ -28,37 +28,36 @@ def get_version():
     raise RuntimeError('Unable to find version string in %s.' % (file_path,))
 
 
-def get_requirements(env="prod"):
+def is_requirement(line):
     """
-    Retrieves the requirements for this plugin
+    Return True if the requirement line is a package requirement;
+    that is, it is not blank, a comment, or editable.
     """
-    links = []
-    requires = []
+    # Remove whitespace at the start/end of the line
+    line = line.strip()
 
-    if env not in REQUIREMENTS_ENVS:
-        return links, requires
-
-    filename_reqs = "requirements/{}.txt".format(env)
-    # new versions of pip requires a session
-    requirements = pip.req.parse_requirements(
-        filename_reqs,
-        session=pip.download.PipSession()
+    # Skip blank lines, comments, and editable installs
+    return not (
+        line == '' or
+        line.startswith('-r') or
+        line.startswith('#') or
+        line.startswith('-e') or
+        line.startswith('git+')
     )
 
-    for item in requirements:
-        # we want to handle package names and also repo urls
-        if getattr(item, "url", None):  # older pip has url
-            links.append(str(item.url))
-        if getattr(item, "link", None):  # newer pip has link
-            links.append(str(item.link))
-        if item.req:
-            requires.append(str(item.req))
 
-    return links, requires
-
-
-links, requires = get_requirements()
-
+def load_requirements(*requirements_paths):
+    """
+    Load all requirements from the specified requirements files.
+    Returns a list of requirement strings.
+    """
+    requirements = set()
+    for path in requirements_paths:
+        requirements.update(
+            line.strip() for line in open(path).readlines()
+            if is_requirement(line)
+        )
+    return list(requirements)
 
 setup(
     name='campusromero-openedx-extensions',
@@ -76,6 +75,5 @@ setup(
             "campusromero_openedx_extensions = campusromero_openedx_extensions.apps:CampusRomeroOpenedxExtensionsConfig",
         ],
     },
-    install_requires=requires,
-    dependency_links=links
+    install_requires=load_requirements("requirements/base.txt")
 )
