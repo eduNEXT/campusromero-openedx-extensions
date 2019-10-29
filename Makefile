@@ -22,3 +22,7 @@ extract_translations: ## Extract translations es_419.
 
 compile_translations: ## Compile .po files into .mo files.
 	django-admin.py compilemessages
+
+bump: ## Tag the current version using semantinc versioning and git tags
+      ## Run with make bump version=[minor|major|patch]
+	 bumpversion $(version)
