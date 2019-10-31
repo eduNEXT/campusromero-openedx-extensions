@@ -21,3 +21,4 @@ def plugin_settings(settings):
     for single_app in PLUGIN_INSTALLED_APPS:
         if single_app not in settings.INSTALLED_APPS:
             settings.INSTALLED_APPS.append(single_app)
+    settings.AWS_STORAGE_BUCKET_NAME = 'test-certificate'
