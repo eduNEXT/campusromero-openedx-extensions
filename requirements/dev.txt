@@ -1,2 +1,4 @@
 -r prod.txt
+Django==1.11.23
+django-storages==1.4.1
 pylint==1.7.1
