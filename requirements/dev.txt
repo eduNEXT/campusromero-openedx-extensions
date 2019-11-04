@@ -2,3 +2,5 @@
 Django==1.11.23
 django-storages==1.4.1
 pylint==1.7.1
+pycodestyle==2.4.0
+

@@ -37,6 +37,7 @@ try:
 except NotRegistered:
     pass
 
+
 class CustomUserAdmin(ImportExportModelAdmin):
     resource_class = UserResource
     add_form_template = 'admin/auth/user/add_form.html'
@@ -227,8 +228,7 @@ class CustomUserAdmin(ImportExportModelAdmin):
             'adminForm': adminForm,
             'form_url': form_url,
             'form': form,
-            'is_popup': (IS_POPUP_VAR in request.POST or
-                         IS_POPUP_VAR in request.GET),
+            'is_popup': (IS_POPUP_VAR in request.POST or IS_POPUP_VAR in request.GET),
             'add': True,
             'change': False,
             'has_delete_permission': False,
@@ -243,9 +243,9 @@ class CustomUserAdmin(ImportExportModelAdmin):
 
         request.current_app = self.admin_site.name
 
-        return TemplateResponse(request,
-            self.change_user_password_template or
-            'admin/auth/user/change_password.html',
+        return TemplateResponse(
+            request,
+            self.change_user_password_template or 'admin/auth/user/change_password.html',
             context)
 
     def response_add(self, request, obj, post_url_continue=None):
@@ -268,5 +268,6 @@ class CustomUserAdmin(ImportExportModelAdmin):
             obj,
             post_url_continue
         )
+
 
 admin.site.register(User, CustomUserAdmin)
