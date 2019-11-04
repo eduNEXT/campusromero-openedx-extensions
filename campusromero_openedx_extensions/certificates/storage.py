@@ -3,13 +3,14 @@ Storage backend for certificates QR codes.
 """
 from __future__ import absolute_import
 
+import StringIO
+
+import qrcode
 from django.conf import settings
 from django.core.files.storage import get_storage_class
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from storages.backends.s3boto import S3BotoStorage
 from storages.utils import setting
-import qrcode
-import StringIO
 
 
 class CertificatesQRCodeS3Storage(S3BotoStorage):  # pylint: disable=abstract-method

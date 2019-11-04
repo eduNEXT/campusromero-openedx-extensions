@@ -5,8 +5,9 @@ Admin file.
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import CustomFormFields
 from django.utils.translation import ugettext_lazy as _
+
+from .models import CustomFormFields
 
 
 @admin.register(CustomFormFields)
