@@ -2,15 +2,12 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.options import IS_POPUP_VAR
+from django.contrib.admin.sites import NotRegistered
 from django.contrib.admin.utils import unquote
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import (
-    AdminPasswordChangeForm,
-    UserChangeForm,
-    UserCreationForm,
-)
+from django.contrib.auth.forms import (AdminPasswordChangeForm, UserChangeForm,
+                                       UserCreationForm)
 from django.contrib.auth.models import User
-from django.contrib.admin.sites import NotRegistered
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.http import Http404, HttpResponseRedirect
@@ -18,16 +15,18 @@ from django.template.response import TemplateResponse
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_text
 from django.utils.html import escape
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext
+from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
+from import_export.admin import ImportExportModelAdmin
+from rangefilter.filter import DateRangeFilter
 
+from campusromero_openedx_extensions.custom_registration_form.admin import \
+    CustomFormFieldsInline
 from student.admin import UserProfileInline
 
 from .resources import UserResource
-from import_export.admin import ImportExportModelAdmin
-from campusromero_openedx_extensions.custom_registration_form.admin import CustomFormFieldsInline
-from rangefilter.filter import DateRangeFilter
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
