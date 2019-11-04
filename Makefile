@@ -26,3 +26,8 @@ compile_translations: ## Compile .po files into .mo files.
 bump: ## Tag the current version using semantinc versioning and git tags
       ## Run with make bump version=[minor|major|patch]
 	 bumpversion $(version)
+
+python-quality-test:
+	pylint ./campusromero_openedx_extensions
+	pycodestyle ./campusromero_openedx_extensions
+

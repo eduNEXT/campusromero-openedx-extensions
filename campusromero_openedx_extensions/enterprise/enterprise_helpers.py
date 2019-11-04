@@ -6,6 +6,7 @@ import logging
 ENTERPRISE_CUSTOMER_BRANDING_OVERRIDE_DETAILS = 'enterprise_customer_branding_override_details'
 LOGGER = logging.getLogger("campusromero_openedx_extensions.enterprise.enterprise_helpers")
 
+
 def set_enterprise_branding_filter_param(request, provider_id):
     """
     Setting 'ENTERPRISE_CUSTOMER_BRANDING_OVERRIDE_DETAILS' in session. 'ENTERPRISE_CUSTOMER_BRANDING_OVERRIDE_DETAILS'

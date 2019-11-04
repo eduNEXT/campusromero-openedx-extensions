@@ -7,6 +7,7 @@ from __future__ import absolute_import, unicode_literals
 
 from .common import *  # pylint: disable=wildcard-import, unused-wildcard-import
 
+
 def plugin_settings(settings):
     """
     Set of plugin settings used by the Open Edx platform.
