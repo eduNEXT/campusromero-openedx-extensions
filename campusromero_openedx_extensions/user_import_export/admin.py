@@ -24,7 +24,7 @@ from rangefilter.filter import DateRangeFilter
 
 from campusromero_openedx_extensions.custom_registration_form.admin import \
     CustomFormFieldsInline
-from student.admin import UserProfileInline  # pylint: disable=import-errror
+from student.admin import UserProfileInline  # pylint: disable=import-error
 
 from .resources import UserResource
 
