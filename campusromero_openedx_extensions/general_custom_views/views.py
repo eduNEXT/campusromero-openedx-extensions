@@ -131,9 +131,9 @@ def purchase_course(request, course_id):
     # modalidad audit o verified lleva a la pantalla de eleccion
     try:
 
-        CourseDict = CourseMode.modes_for_course_dict(course_id)
+        course_dict = CourseMode.modes_for_course_dict(course_id)
 
-        for key in CourseDict.keys():
+        for key in course_dict.keys():
             if key == 'no-id-professional':
                 sku = CourseMode.modes_for_course_dict(course_id)[key].sku
                 price = CourseMode.modes_for_course_dict(course_id)[key].min_price
@@ -222,22 +222,22 @@ def noLogingVerified(request, course_id):
 def enviarMail(mail, body, name):
     """
     Send an email.
-    """
-    # Configuracion de inicio
-    '''
+
+    Configuracion de inicio
     SMTPserver = 'mail.magiadigital.com'
     USERNAME = 'envios'
     PASSWORD = 'env10s'
-    '''
-    SMTPserver = settings.EMAIL_HOST
-    USERNAME = settings.EMAIL_HOST_USER
-    PASSWORD = settings.EMAIL_HOST_PASSWORD
-    WEBMASTER = settings.CONTACT_EMAIL
+    """
+
+    smtpserver = settings.EMAIL_HOST
+    username = settings.EMAIL_HOST_USER
+    password = settings.EMAIL_HOST_PASSWORD
+    webmaster = settings.CONTACT_EMAIL
 
     # Variables de inicio
 
-    sender = WEBMASTER
-    receiver = WEBMASTER  # 'dramos@magiadigital.com'
+    sender = webmaster
+    receiver = webmaster  # 'dramos@magiadigital.com'
     msg = MIMEMultipart()
 
     msg['From'] = name + '<' + mail + '>'
@@ -248,9 +248,9 @@ def enviarMail(mail, body, name):
     msg['Subject'] = ("Formulario de contáctanos")
 
     # Envio del mensaje
-    conn = smtplib.SMTP(SMTPserver)
+    conn = smtplib.SMTP(smtpserver)
     conn.set_debuglevel(False)
-    conn.login(USERNAME, PASSWORD)
+    conn.login(username, password)
 
     try:
         conn.sendmail(sender, receiver, msg.as_string())

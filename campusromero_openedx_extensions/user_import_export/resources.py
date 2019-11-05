@@ -107,8 +107,8 @@ class UserResource(resources.ModelResource):
 
         if not dni:
             try:
-                dni = CustomFormFields.objects.get(user=obj).dni
-            except CustomFormFields.DoesNotExist:
+                dni = CustomFormFields.objects.get(user=obj).dni  # pylint: disable=no-member
+            except CustomFormFields.DoesNotExist:  # pylint: disable=no-member
                 pass
 
         return dni
@@ -125,8 +125,8 @@ class UserResource(resources.ModelResource):
 
         if not phone_number:
             try:
-                phone_number = CustomFormFields.objects.get(user=obj).phone_number
-            except CustomFormFields.DoesNotExist:
+                phone_number = CustomFormFields.objects.get(user=obj).phone_number  # pylint: disable=no-member
+            except CustomFormFields.DoesNotExist:  # pylint: disable=no-member
                 pass
 
         return phone_number
@@ -197,8 +197,8 @@ class UserResource(resources.ModelResource):
 
         if not day_of_birth:
             try:
-                day_of_birth = CustomFormFields.objects.get(user=obj).day_of_birth
-            except CustomFormFields.DoesNotExist:
+                day_of_birth = CustomFormFields.objects.get(user=obj).day_of_birth  # pylint: disable=no-member
+            except CustomFormFields.DoesNotExist:  # pylint: disable=no-member
                 pass
 
         return day_of_birth
@@ -215,8 +215,8 @@ class UserResource(resources.ModelResource):
 
         if not month_of_birth:
             try:
-                month_of_birth = CustomFormFields.objects.get(user=obj).month_of_birth
-            except CustomFormFields.DoesNotExist:
+                month_of_birth = CustomFormFields.objects.get(user=obj).month_of_birth  # pylint: disable=no-member
+            except CustomFormFields.DoesNotExist:  # pylint: disable=no-member
                 pass
 
         return month_of_birth
@@ -251,8 +251,8 @@ class UserResource(resources.ModelResource):
 
         if not institution:
             try:
-                institution = CustomFormFields.objects.get(user=obj).institution
-            except CustomFormFields.DoesNotExist:
+                institution = CustomFormFields.objects.get(user=obj).institution  # pylint: disable=no-member
+            except CustomFormFields.DoesNotExist:  # pylint: disable=no-member
                 pass
 
         return institution
@@ -320,7 +320,7 @@ class UserResource(resources.ModelResource):
                     userprofile.year_of_birth = instance.year_of_birth
                     userprofile.save()
 
-                custom_fields, created_customfields = CustomFormFields.objects.get_or_create(
+                custom_fields, created_customfields = CustomFormFields.objects.get_or_create(  # pylint: disable=no-member
                     user=instance,
                     defaults={
                         'dni': instance.dni,
