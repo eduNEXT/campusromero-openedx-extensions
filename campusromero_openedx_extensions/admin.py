@@ -1,6 +1,6 @@
 from django.contrib.admin.sites import NotRegistered
 from django.contrib import admin
-from student.models import LoginFailures
+from student.models import LoginFailures  # pylint: disable=import-error
 
 
 class LoginFailuresAdmin(admin.ModelAdmin):
