@@ -33,8 +33,8 @@ from util.db import outer_atomic
 
 from campusromero_openedx_extensions.edxapp_wrapper.edxmako_module import render_to_response
 
-log = logging.getLogger("edx.student")
-plantilla_email = "<table border=0 cellpadding=0 cellspacing=0 style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;width:650px align=center width=650><tr><td height=10 valign=middle align=left> <tr><td valign=top style=background-color:#dbf2ff><table border=0 cellpadding=0 cellspacing=0 style=width:648px><tr><td height=10 width=3%> <td height=10 width=94%> <td height=10 width=3%> <tr><td width=3%> <td width=94% style=font-family:Arial,Helvetica,sans-serif;font-size:24px;color:#db5008><strong>Formulario Contáctanos</strong><td width=3%> <tr><td height=10> <td height=10 valign=top> <td height=10> <tr><td> <td valign=top><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Estimado administrador <strong></strong>:<br><br>Se registró el siguiente formulario para su revisión:<br><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Nombre completo:<strong>{nombreCompleto}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Email:<strong>{email}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Región:<strong>{region}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Curso:<strong>{curso}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Teléfono:<strong>{telefono}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Tema:<strong>{tema}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px><strong></strong>Descripción:<br><strong>{descripcion}</strong><p><br><td> <tr><td height=10> <td height=10> <td height=10> </table><tr><td style=background-color:#0087ce><table border=0 cellpadding=0 cellspacing=0 style=width:648px><tr><td height=10> <td height=10> <td height=10> <td height=10> <tr><td width=3%> <td width=47% align=left valign=top><p style=font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;line-height:14px><td width=47% align=right valign=top><p style=font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;line-height:14px><strong>Campus Romero</strong><br><a href=https://www.campusromero.pe target=_blank style=font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;line-height:14px;text-decoration:none>www.campusromero.pe</a><td width=3%> <tr><td height=10> <td height=10> <td height=10> <td height=10> </table>"
+LOG = logging.getLogger("edx.student")
+EMAIL_TEMPLATE = "<table border=0 cellpadding=0 cellspacing=0 style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;width:650px align=center width=650><tr><td height=10 valign=middle align=left> <tr><td valign=top style=background-color:#dbf2ff><table border=0 cellpadding=0 cellspacing=0 style=width:648px><tr><td height=10 width=3%> <td height=10 width=94%> <td height=10 width=3%> <tr><td width=3%> <td width=94% style=font-family:Arial,Helvetica,sans-serif;font-size:24px;color:#db5008><strong>Formulario Contáctanos</strong><td width=3%> <tr><td height=10> <td height=10 valign=top> <td height=10> <tr><td> <td valign=top><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Estimado administrador <strong></strong>:<br><br>Se registró el siguiente formulario para su revisión:<br><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Nombre completo:<strong>{nombreCompleto}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Email:<strong>{email}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Región:<strong>{region}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Curso:<strong>{curso}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Teléfono:<strong>{telefono}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px>Tema:<strong>{tema}</strong><p style=font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#585858;line-height:16px><strong></strong>Descripción:<br><strong>{descripcion}</strong><p><br><td> <tr><td height=10> <td height=10> <td height=10> </table><tr><td style=background-color:#0087ce><table border=0 cellpadding=0 cellspacing=0 style=width:648px><tr><td height=10> <td height=10> <td height=10> <td height=10> <tr><td width=3%> <td width=47% align=left valign=top><p style=font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;line-height:14px><td width=47% align=right valign=top><p style=font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;line-height:14px><strong>Campus Romero</strong><br><a href=https://www.campusromero.pe target=_blank style=font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#fff;line-height:14px;text-decoration:none>www.campusromero.pe</a><td width=3%> <tr><td height=10> <td height=10> <td height=10> <td height=10> </table>"
 
 
 # ITSoluciones
@@ -247,11 +247,11 @@ def enviarMail(mail, body, name):
 
     try:
         conn.sendmail(sender, receiver, msg.as_string())
-        log.info("---------------------->ENVIADO<------------------------")
+        LOG.info("---------------------->ENVIADO<------------------------")
 
         return True
     except Exception as e:
-        log.info(e)
+        LOG.info(e)
         return False
     finally:
         conn.quit()
@@ -284,7 +284,7 @@ class contactanos(APIView):
         tema = data.get('tema', '')
         descripcion = data.get('descripcion', '')
 
-        body = plantilla_email.replace(
+        body = EMAIL_TEMPLATE.replace(
             '{nombreCompleto}',
             nombreCompleto.encode('utf-8')
         ).replace(
@@ -307,17 +307,7 @@ class contactanos(APIView):
             descripcion.encode('utf-8')
         )
 
-        # NOTE: Remove these loggings soon!!!
-        logging.info('email: -----------')
-        logging.info(email)
-        logging.info('str(body): -----------')
-        logging.info(str(body))
-        logging.info('nombreCompleto: ----------')
-        logging.info(nombreCompleto)
-        logging.info('PRUEBAS OK ----------')
-
         enviarMail(email, str(body), nombreCompleto)
-        logging.info('ENVIADO OK ----------')
 
         return Response(
             status=status.HTTP_200_OK,

@@ -11,7 +11,7 @@ from campusromero_openedx_extensions.general_custom_views.views import (
 )
 
 
-urlpatterns = [
+urlpatterns = [  # pylint: disable=invalid-name
     # ITSoluciones
     url(r'^iframe_button_log_reg$', iframe_log_reg, name="iframe_log_reg"),
     url(
