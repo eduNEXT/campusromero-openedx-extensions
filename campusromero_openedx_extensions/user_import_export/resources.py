@@ -22,9 +22,13 @@ class CustomCharWidget(widgets.CharWidget):
 
 
 class UserResource(resources.ModelResource):
+    """
+    Using a custom widget on char fields composed by numbers to
+    prevent issue when importing with XLS
 
-    # Using a custom widget on char fields composed by numbers to prevent issue when importing with XLS
-    # More details here: https://github.com/django-import-export/django-import-export/issues/96
+    More details here:
+    https://github.com/django-import-export/django-import-export/issues/96
+    """
     password = fields.Field(attribute='password', widget=CustomCharWidget())
 
     # UserProfile columns
@@ -217,7 +221,7 @@ class UserResource(resources.ModelResource):
 
     def before_save_instance(self, instance, using_transactions, dry_run):
         duplicate_email = False
-        error_duplicate_email = 'Advertencia_Sbs1: \"Duplicate entry \'' + str(instance.email) + '\' for key \'email\''
+        error_duplicate_email = 'Advertencia_Sbs1: \"Duplicate entry \'' + str(instance.email) + '\' for key \'email\''  # pylint: disable=line-too-long
 
         # Name, first_name and last_name fields must not be None (allowed to be blank)
         instance.name = instance.name or ''

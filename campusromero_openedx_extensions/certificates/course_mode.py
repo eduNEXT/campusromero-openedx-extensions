@@ -9,7 +9,7 @@ from .edxapp_dependencies import (
     CertificateWhitelist,
 )
 
-log = logging.getLogger(__name__)
+LOG = logging.getLogger(__name__)
 
 
 def change_course_mode(course, student):
@@ -24,4 +24,4 @@ def change_course_mode(course, student):
             if course_enrollment_obj:
                 course_enrollment_obj.change_mode(CourseMode.VERIFIED)
     except Exception as e:  # pylint: disable=broad-except
-        log.exception(str(e))
+        LOG.exception(str(e))
