@@ -29,7 +29,7 @@ from student.admin import UserProfileInline
 from .resources import UserResource
 
 csrf_protect_m = method_decorator(csrf_protect)  # pylint: disable=invalid-name
-sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())  # pylint: disable=invalid-name
+sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())  # pylint: disable=invalid-name,line-too-long
 
 try:
     admin.site.unregister(User)
@@ -151,7 +151,12 @@ class CustomUserAdmin(ImportExportModelAdmin):
 
     def get_urls(self):
         return [
-            url(r'^(.+)/password/$', self.admin_site.admin_view(self.user_change_password), name='auth_user_password_change'),
+            url(
+                r'^(.+)/password/$',
+                self.admin_site.admin_view(
+                    self.user_change_password),
+                name='auth_user_password_change'
+                ),
         ] + super(CustomUserAdmin, self).get_urls()
 
     def lookup_allowed(self, lookup, value):
