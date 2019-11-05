@@ -1,3 +1,6 @@
+"""
+Admin modulel for user import export.
+"""
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin, messages
@@ -38,6 +41,9 @@ except NotRegistered:
 
 
 class CustomUserAdmin(ImportExportModelAdmin):
+    """
+    ImportExport model admin for UserResource
+    """
     resource_class = UserResource
     add_form_template = 'admin/auth/user/add_form.html'
     change_user_password_template = None
@@ -203,6 +209,9 @@ class CustomUserAdmin(ImportExportModelAdmin):
 
     @sensitive_post_parameters_m
     def user_change_password(self, request, id, form_url=''):
+        """
+        Change user password.
+        """
         if not self.has_change_permission(request):
             raise PermissionDenied
         user = self.get_object(request, unquote(id))

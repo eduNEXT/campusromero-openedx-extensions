@@ -12,6 +12,9 @@ from .models import CustomFormFields
 
 @admin.register(CustomFormFields)
 class CustomFormFieldsAdmin(admin.ModelAdmin):
+    """
+    Model Admin for the custom form model.
+    """
     raw_id_fields = ('user',)
 
 
