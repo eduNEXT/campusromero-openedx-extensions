@@ -46,7 +46,7 @@ def generateQr(url, certificate_id_number):
             django_file = InMemoryUploadedFile(
                 img_io, None, img_filename, 'image/png', img_io.len, None
             )
-            storage_path = certificates_qr_code_storage.save(
+            certificates_qr_code_storage.save(
                 img_filename, django_file
             )
         qrcode_s3_url = certificates_qr_code_storage.url(img_filename)
