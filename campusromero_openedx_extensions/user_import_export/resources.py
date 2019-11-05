@@ -9,7 +9,7 @@ except ImportError:
     from django.utils.encoding import force_unicode as force_text
 
 from campusromero_openedx_extensions.custom_registration_form.models import CustomFormFields
-from student.models import UserProfile
+from student.models import UserProfile  # pylint: disable=import-error
 
 
 class CustomCharWidget(widgets.CharWidget):

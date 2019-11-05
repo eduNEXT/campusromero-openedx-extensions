@@ -4,7 +4,6 @@ import logging
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from opaque_keys.edx.keys import CourseKey
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -17,11 +16,13 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from opaque_keys.edx.locations import SlashSeparatedCourseKey
-from course_modes.models import CourseMode
+from opaque_keys.edx.keys import CourseKey  # pylint: disable=import-error
+from opaque_keys.edx.locations import SlashSeparatedCourseKey  # pylint: disable=import-error
 
-from student.models import UserProfile, CourseEnrollment
-from xmodule.modulestore.django import modulestore
+from course_modes.models import CourseMode  # pylint: disable=import-error
+
+from student.models import UserProfile, CourseEnrollment  # pylint: disable=import-error
+from xmodule.modulestore.django import modulestore  # pylint: disable=import-error
 from util.db import outer_atomic
 
 from campusromero_openedx_extensions.edxapp_wrapper.edxmako_module import render_to_response
