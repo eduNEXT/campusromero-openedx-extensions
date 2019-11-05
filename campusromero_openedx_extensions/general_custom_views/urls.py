@@ -1,3 +1,6 @@
+"""
+Urls module used in the camrom plugin.
+"""
 from django.conf.urls import url
 from django.conf import settings
 

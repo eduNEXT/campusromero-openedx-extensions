@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+General views used in the camrom plugin
+"""
 import datetime
 import logging
 import smtplib
@@ -34,6 +37,9 @@ EMAIL_TEMPLATE = "<table border=0 cellpadding=0 cellspacing=0 style=font-family:
 # ITSoluciones
 @xframe_options_exempt
 def iframe_log_reg(request):
+    """
+    Render the login-registration iframe
+    """
     user = request.user
     context = {
         'user': user,
@@ -45,6 +51,9 @@ def iframe_log_reg(request):
 # ITSoluciones
 @xframe_options_exempt
 def purchase_course(request, course_id):
+    """
+    View used to purchase a course.
+    """
     user = request.user
     p_course = course_id
     bool_ac = False
@@ -176,7 +185,9 @@ def purchase_course(request, course_id):
 @require_POST
 @outer_atomic(read_committed=True)
 def change_enrollment(request, course_id, check_access=True):
-
+    """
+    View used to change enrollment type in the user
+    """
     if not request.user.is_authenticated:
         return HttpResponse("An authenticated user is required", status=401)
 
@@ -209,7 +220,9 @@ def noLogingVerified(request, course_id):
 
 
 def enviarMail(mail, body, name):
-
+    """
+    Send an email.
+    """
     # Configuracion de inicio
     '''
     SMTPserver = 'mail.magiadigital.com'
@@ -252,7 +265,7 @@ def enviarMail(mail, body, name):
 
 
 class contactanos(APIView):
-    '''
+    """
     {
        "usuario":{
           "nombreCompleto":"APPROVED",
@@ -265,10 +278,12 @@ class contactanos(APIView):
                          no pueda ser apagada facilmente"
        }
     }
-    '''
+    """
     def post(self, request):
-
-        log.info("---------------------->CONFIRMADO<------------------------")
+        """
+        POST handler
+        """
+        LOG.info("---------------------->CONFIRMADO<------------------------")
         data = request.data.get('usuario', {})
         nombreCompleto = data.get('nombreCompleto', '')
         email = data.get('email', '')

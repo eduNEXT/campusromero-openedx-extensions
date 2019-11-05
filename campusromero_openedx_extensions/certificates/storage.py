@@ -34,6 +34,9 @@ certificates_qr_code_storage = get_storage_class(settings.CERTIFICATES_QR_CODE_S
 
 
 def generateQr(url, certificate_id_number):
+    """
+    Generate QR used in the certificates.
+    """
     try:
         img_filename = 'qr{}.png'.format(certificate_id_number)
         if not certificates_qr_code_storage.exists(img_filename):

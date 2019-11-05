@@ -1,3 +1,6 @@
+"""
+Resources module for the user import export feature.
+"""
 import logging
 from import_export import resources, fields, widgets
 from django.contrib.auth.models import User
@@ -13,10 +16,15 @@ from student.models import UserProfile  # pylint: disable=import-error
 
 
 class CustomCharWidget(widgets.CharWidget):
+    """
+    Custom Char Widget used in the UserResource class.
+    """
 
     def clean(self, value, row=None, *args, **kwargs):
+        """
+        Forcing the value to be text without the decimal part
+        """
         if isinstance(value, float):
-            # Forcing the value to be text without the decimal part
             value = force_text(int(value))
         return value
 
@@ -45,6 +53,9 @@ class UserResource(resources.ModelResource):
     institution = fields.Field(attribute="institution")
 
     class Meta:
+        """
+        Resource meta class.
+        """
         model = User
         import_id_fields = ['id']
         fields = (
@@ -85,6 +96,9 @@ class UserResource(resources.ModelResource):
         )
 
     def dehydrate_dni(self, obj):
+        """
+        Dehydrate dni field.
+        """
         dni = ''
         try:
             dni = obj.dni
@@ -100,6 +114,9 @@ class UserResource(resources.ModelResource):
         return dni
 
     def dehydrate_phone_number(self, obj):
+        """
+        Dehydrate phone number field.
+        """
         phone_number = ''
         try:
             phone_number = obj.phone_number
@@ -115,6 +132,9 @@ class UserResource(resources.ModelResource):
         return phone_number
 
     def dehydrate_name(self, obj):
+        """
+        Dehydrate name field.
+        """
         name = ''
         try:
             name = obj.name
@@ -130,6 +150,9 @@ class UserResource(resources.ModelResource):
         return name
 
     def dehydrate_gender(self, obj):
+        """
+        Dehydrate gender field.
+        """
         gender = None
         try:
             gender = obj.gender
@@ -145,6 +168,9 @@ class UserResource(resources.ModelResource):
         return gender
 
     def dehydrate_city(self, obj):
+        """
+        Dehydrate city field.
+        """
         city = None
         try:
             city = obj.city
@@ -160,6 +186,9 @@ class UserResource(resources.ModelResource):
         return city
 
     def dehydrate_day_of_birth(self, obj):
+        """
+        Dehydrate day of birth field.
+        """
         day_of_birth = None
         try:
             day_of_birth = obj.day_of_birth
@@ -175,6 +204,9 @@ class UserResource(resources.ModelResource):
         return day_of_birth
 
     def dehydrate_month_of_birth(self, obj):
+        """
+        Dehydrate month of birth.
+        """
         month_of_birth = None
         try:
             month_of_birth = obj.month_of_birth
@@ -190,6 +222,9 @@ class UserResource(resources.ModelResource):
         return month_of_birth
 
     def dehydrate_year_of_birth(self, obj):
+        """
+        Dehydrate year of birth.
+        """
         year_of_birth = None
         try:
             year_of_birth = obj.year_of_birth
@@ -205,6 +240,9 @@ class UserResource(resources.ModelResource):
         return year_of_birth
 
     def dehydrate_institution(self, obj):
+        """
+        Dehydrate insitution field.
+        """
         institution = ''
         try:
             institution = obj.institution
@@ -220,6 +258,9 @@ class UserResource(resources.ModelResource):
         return institution
 
     def before_save_instance(self, instance, using_transactions, dry_run):
+        """
+        Actions to do before save instance
+        """
         duplicate_email = False
         error_duplicate_email = 'Advertencia_Sbs1: \"Duplicate entry \'' + str(instance.email) + '\' for key \'email\''  # pylint: disable=line-too-long
 
@@ -248,6 +289,9 @@ class UserResource(resources.ModelResource):
         instance.password = make_password(new_pass, salt=None, hasher='default')
 
     def after_save_instance(self, instance, using_transactions, dry_run):
+        """
+        Actions to do after save instance.
+        """
         if not dry_run:
             if isinstance(instance.dni, int) and str(instance.dni)[-2:] == '.0':
                 instance.dni = str(instance.dni)[:-2]
