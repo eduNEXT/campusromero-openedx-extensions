@@ -240,7 +240,7 @@ class UserResource(resources.ModelResource):
 
         if not instance.password:
             new_pass = '1234'
-        elif type(instance.password) is int and str(instance.password)[-2:] == '.0':
+        elif isinstance(instance.password, int) and str(instance.password)[-2:] == '.0':
             new_pass = str(instance.password)[:-2]
         else:
             new_pass = str(instance.password)
@@ -249,13 +249,13 @@ class UserResource(resources.ModelResource):
 
     def after_save_instance(self, instance, using_transactions, dry_run):
         if not dry_run:
-            if type(instance.dni) is int and str(instance.dni)[-2:] == '.0':
+            if isinstance(instance.dni, int) and str(instance.dni)[-2:] == '.0':
                 instance.dni = str(instance.dni)[:-2]
 
-            if type(instance.phone_number) is int and str(instance.phone_number)[-2:] == '.0':
+            if isinstance(instance.phone_number, int) and str(instance.phone_number)[-2:] == '.0':
                 instance.phone_number = str(instance.phone_number)[:-2]
 
-            if not type(instance.year_of_birth) is int:
+            if not isinstance(instance.year_of_birth, int):
                 instance.year_of_birth = int(instance.year_of_birth)
 
             try:
