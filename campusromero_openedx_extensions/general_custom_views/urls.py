@@ -1,7 +1,7 @@
 """
 Urls module used in the camrom plugin.
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.conf import settings
 
 from campusromero_openedx_extensions.general_custom_views.views import (
@@ -38,4 +38,7 @@ urlpatterns = [  # pylint: disable=invalid-name
 
     # Contact us view
     url(r'^contactanos$', contactanos.as_view(), name='contactanos'),
+
+    # Camrom API views
+    url(r'^camrom/api/', include('campusromero_openedx_extensions.general_custom_views.api.urls')),
 ]
