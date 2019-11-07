@@ -13,7 +13,10 @@ from edx_rest_framework_extensions.auth.jwt.authentication import JwtAuthenticat
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 
-from lms.djangoapps.verify_student.models import SoftwareSecurePhotoVerification  # pylint: disable=import-error
+from campusromero_openedx_extensions.edxapp_wrapper.verify_student import get_software_photo_verification
+
+SoftwareSecurePhotoVerification = get_software_photo_verification()
+
 
 class ChangeToVerifiedMode(APIView):
     """

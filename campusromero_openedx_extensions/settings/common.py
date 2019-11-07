@@ -25,3 +25,4 @@ def plugin_settings(settings):
         "campusromero_openedx_extensions.certificates.storage.CertificatesQRCodeS3Storage"
     )
     settings.CAMPUS_EDXMAKO_MODULE = "campusromero_openedx_extensions.edxapp_wrapper.backends.edxmako_campus_module"  # pylint: disable=line-too-long
+    settings.CAMPUS_VERIFYSTUDENT_MODULE = "campusromero_openedx_extensions.edxapp_wrapper.backends.i_verify_student"  # pylint: disable=line-too-long
