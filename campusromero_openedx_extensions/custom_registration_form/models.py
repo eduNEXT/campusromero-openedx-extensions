@@ -35,8 +35,6 @@ class CustomFormFields(models.Model):
     )
     dni = models.TextField(
         verbose_name=_("DNI"),
-        blank=True,
-        null=True,
         max_length=10
     )
     phone_number = models.CharField(
