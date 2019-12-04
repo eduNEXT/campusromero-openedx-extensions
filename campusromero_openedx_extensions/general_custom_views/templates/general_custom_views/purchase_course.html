@@ -119,7 +119,7 @@ color: #fff;}
             url: "change_enrollment",
             data: $('#class_enroll_form').serialize(),
             success: function(data){
-                window.location.href = "/course_modes/choose/${ cod_course }/";
+                window.top.location.href = "/course_modes/choose/${ cod_course }/";
             },
         });
     });
