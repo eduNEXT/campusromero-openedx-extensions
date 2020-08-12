@@ -21,6 +21,7 @@ class CustomForm(ModelForm):
             'dni',
             'phone_number',
             'institution',
+            'province',
         )
 
     def __init__(self, *args, **kwargs):
@@ -40,4 +41,7 @@ class CustomForm(ModelForm):
         }
         self.fields['institution'].error_messages = {
             'invalid': _('This Institution name seems invalid, please check your input.'),
+        }
+        self.fields['province'].error_messages = {
+            'invalid': _('This province is not valid, please check your input.'),
         }
