@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from .choices import MONTH_OF_BIRTH, DAY_OF_BIRTH
+from .choices import MONTH_OF_BIRTH, DAY_OF_BIRTH, PROVINCES
 
 # Backwards compatible settings.AUTH_USER_MODEL
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
@@ -49,4 +49,11 @@ class CustomFormFields(models.Model):
         null=True,
         max_length=60,
         default=""
+    )
+    province = models.CharField(
+        verbose_name=_("Province"),
+        blank=True,
+        null=True,
+        max_length=20,
+        choices=PROVINCES
     )
