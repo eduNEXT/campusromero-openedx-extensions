@@ -18,7 +18,7 @@ class CustomFormFields(models.Model):
     Holds extra info to be, used during
     user registration as a form extension.
     """
-    user = models.OneToOneField(USER_MODEL, null=True)
+    user = models.OneToOneField(USER_MODEL, null=True, on_delete=models.PROTECT)
     month_of_birth = models.CharField(
         verbose_name=_("Month Of Birth"),
         blank=True,
@@ -52,7 +52,6 @@ class CustomFormFields(models.Model):
     )
     province = models.CharField(
         verbose_name=_("Province"),
-        blank=True,
         null=True,
         max_length=20,
         choices=PROVINCES

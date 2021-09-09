@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('dni', models.TextField(max_length=30, verbose_name='DNI')),
                 ('phone_number', models.CharField(max_length=60, verbose_name='Phone Number')),
                 ('institution', models.TextField(max_length=60, verbose_name='Institution')),
-                ('user', models.OneToOneField(null=True, to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(null=True, to=settings.AUTH_USER_MODEL, on_delete=models.PROTECT)),
             ],
         ),
     ]
