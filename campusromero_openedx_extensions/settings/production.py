@@ -1,5 +1,5 @@
 """
-aws settings for campusromero_openedx_extensions project.
+production settings for campusromero_openedx_extensions project.
 """
 from __future__ import absolute_import, unicode_literals
 
