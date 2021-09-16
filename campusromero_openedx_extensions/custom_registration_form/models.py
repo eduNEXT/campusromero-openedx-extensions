@@ -18,7 +18,7 @@ class CustomFormFields(models.Model):
     Holds extra info to be, used during
     user registration as a form extension.
     """
-    user = models.OneToOneField(USER_MODEL, null=True, on_delete=models.PROTECT)
+    user = models.OneToOneField(USER_MODEL, null=True, on_delete=models.CASCADE)
     month_of_birth = models.CharField(
         verbose_name=_("Month Of Birth"),
         blank=True,
