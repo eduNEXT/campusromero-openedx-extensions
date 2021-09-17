@@ -45,3 +45,4 @@ class CustomForm(ModelForm):
         self.fields['province'].error_messages = {
             'invalid': _('This province is not valid, please check your input.'),
         }
+        self.fields['province'].required = True
