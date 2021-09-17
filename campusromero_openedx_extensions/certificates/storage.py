@@ -3,7 +3,7 @@ Storage backend for certificates QR codes.
 """
 from __future__ import absolute_import
 
-import StringIO
+from io import BytesIO
 
 import qrcode
 from django.conf import settings
@@ -41,10 +41,10 @@ def generateQr(url, certificate_id_number):
         img_filename = 'qr{}.png'.format(certificate_id_number)
         if not certificates_qr_code_storage.exists(img_filename):
             img = qrcode.make(url)
-            img_io = StringIO.StringIO()
+            img_io = BytesIO()
             img.save(img_io, format='PNG')
             django_file = InMemoryUploadedFile(
-                img_io, None, img_filename, 'image/png', img_io.len, None
+                img_io, None, img_filename, 'image/png', len(img_io.read()), None
             )
             certificates_qr_code_storage.save(
                 img_filename, django_file
