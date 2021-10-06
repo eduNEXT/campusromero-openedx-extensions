@@ -34,7 +34,7 @@ def update_account_view(context, user):
 def update_account_serializer(data, user):
     """Updates the account serializer."""
     custom_form_model, _ = CustomFormFields.objects.get_or_create(user=user)
-    extended_profile = data.get("extended_profile", {})
+    extended_profile = data.get("extended_profile", [])
     custom_profile = [
         {
             "field_name": field.name,
@@ -43,7 +43,7 @@ def update_account_serializer(data, user):
         for field in get_fields(custom_form_model)
     ]
     extended_profile.extend(custom_profile)
-    data["extended_profile"].extend(extended_profile)
+    data["extended_profile"] = extended_profile
 
 
 def partial_update_account(update, user):
