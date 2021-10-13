@@ -63,7 +63,7 @@ def purchase_course(request, course_id):
     # 1.Datos basicos del curso si existe
     # NOTE: definitively the logic below deserves to be refactored, but for now left as it is
     try:
-        course_id = SlashSeparatedCourseKey.from_deprecated_string(p_course)
+        course_id = CourseKey.from_string(p_course)
         course = modulestore().get_course(course_id)
         student_enrolled = CourseEnrollment.is_enrolled(request.user, course_id)
         analytics = p_course.split("+")[1]
@@ -153,7 +153,7 @@ def purchase_course(request, course_id):
         syserror = CourseMode.modes_for_course_dict(course_id)
     # 4.Obtener datos del usuario
     user = request.user
-    if not user.is_authenticated():
+    if not user.is_authenticated:
         user_p = ''
     else:
         user_p = UserProfile.objects.get(user=request.user)
