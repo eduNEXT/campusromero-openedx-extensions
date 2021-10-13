@@ -295,25 +295,25 @@ class contactanos(APIView):
 
         body = EMAIL_TEMPLATE.replace(
             '{nombreCompleto}',
-            nombreCompleto.encode('utf-8')
+            nombreCompleto
         ).replace(
             '{email}',
-            email.encode('utf-8')
+            email
         ).replace(
             '{region}',
-            region.encode('utf-8')
+            region
         ).replace(
             '{curso}',
-            curso.encode('utf-8')
+            curso
         ).replace(
             '{telefono}',
-            telefono.encode('utf-8')
+            telefono
         ).replace(
             '{tema}',
-            tema.encode('utf-8')
+            tema
         ).replace(
             '{descripcion}',
-            descripcion.encode('utf-8')
+            descripcion
         )
 
         enviarMail(email, str(body), nombreCompleto)
