@@ -1,2 +1,2 @@
 include README.md
-recursive-include campusromero_openedx_extensions *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
+recursive-include campusromero_openedx_extensions *.html *.png *.gif *js *.css *jpg *jpeg *svg *py *po *mo
